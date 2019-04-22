@@ -864,13 +864,14 @@ extension TabViewController: WKUIDelegate {
             // Why open the current url in a new frame?  This is probably a pop-under.
             view.showBottomToast("Popup blocked")
             webView.stopLoading()
+            hideProgressIndicator()
             self.webView.load(navigationAction.request)
             return nil
         }
 
         // This is a legit new frame open as per frame="_blank"
-        if let url = navigationAction.request.url, navigationAction.navigationType == .linkActivated {
-            self.delegate?.tab(self, didRequestNewTabForUrl: url)
+        if navigationAction.request.url != nil, navigationAction.navigationType == .linkActivated {
+            webView.load(navigationAction.request)
             return nil
         }
         
