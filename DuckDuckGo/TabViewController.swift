@@ -854,11 +854,40 @@ extension TabViewController: PrivacyProtectionDelegate {
 }
 
 extension TabViewController: WKUIDelegate {
+    
     public func webView(_ webView: WKWebView,
                         createWebViewWith configuration: WKWebViewConfiguration,
                         for navigationAction: WKNavigationAction,
                         windowFeatures: WKWindowFeatures) -> WKWebView? {
-        webView.load(navigationAction.request)
+        
+        if webView.url == navigationAction.request.url {
+            // Why open the current url in a new frame?  This is probably a pop-under.
+            view.showBottomToast("Popup blocked")
+            webView.stopLoading()
+            self.webView.load(navigationAction.request)
+            return nil
+        }
+
+        // This is a legit new frame open as per frame="_blank"
+        if let url = navigationAction.request.url, navigationAction.navigationType == .linkActivated {
+            self.delegate?.tab(self, didRequestNewTabForUrl: url)
+            return nil
+        }
+        
+        let alert = UIAlertController(
+            title: "Open new tab?",
+            message: "The web page is requesting a new tab for \(navigationAction.request.url?.absoluteString ?? "")",
+            preferredStyle: .actionSheet)
+        
+        alert.addAction(title: "New Tab", style: .default) {
+            self.delegate?.tab(self, didRequestNewTabForUrl: navigationAction.request.url!)
+        }
+        alert.addAction(title: "Current Tab", style: .default) {
+            webView.load(navigationAction.request)
+        }
+        alert.addAction(title: "Cancel", style: .destructive)
+        present(alert, animated: true)
+
         return nil
     }
     
