@@ -22,7 +22,7 @@ import Foundation
 public class BookmarkUserDefaults: BookmarkStore {
 
     public struct Constants {
-        public static let groupName = "group.io.bitrise.bookmarks"
+        public static let groupName = "group.com.duckduckgo.bookmarks"
     }
 
     private struct Keys {

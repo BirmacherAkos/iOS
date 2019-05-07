@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.io.bitrise.statistics</string>
+		<string>group.com.duckduckgo.statistics</string>
 	</array>
 </dict>
 </plist>
