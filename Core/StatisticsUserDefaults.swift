@@ -37,7 +37,7 @@ public class StatisticsUserDefaults: StatisticsStore {
         return UserDefaults(suiteName: groupName)
     }
 
-    public init(groupName: String = "group.com.duckduckgo.statistics") {
+    public init(groupName: String = "group.io.bitrise.statistics") {
         self.groupName = groupName
     }
 

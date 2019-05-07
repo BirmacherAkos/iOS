@@ -76,6 +76,7 @@
 	<string>com.duckduckgo.mobile.ios.QuickActionsTodayExtension</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>external-accessory</string>
 		<string>fetch</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

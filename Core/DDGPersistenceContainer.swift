@@ -29,7 +29,7 @@ public class DDGPersistenceContainer {
 
     public init?(name: String, concurrencyType: NSManagedObjectContextConcurrencyType = .privateQueueConcurrencyType) {
         let mainBundle = Bundle.main
-        let coreBundle = Bundle(identifier: "com.duckduckgo.mobile.ios.Core")!
+        let coreBundle = Bundle(identifier: "io.bitrise.mobile.ios.Core")!
 
         guard let managedObjectModel = NSManagedObjectModel.mergedModel(from: [mainBundle, coreBundle]) else { return nil }
         self.managedObjectModel = managedObjectModel

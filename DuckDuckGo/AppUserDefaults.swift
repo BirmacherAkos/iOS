@@ -37,7 +37,7 @@ public class AppUserDefaults: AppSettings {
         return UserDefaults(suiteName: groupName)
     }
 
-    init(groupName: String =  "group.com.duckduckgo.app") {
+    init(groupName: String =  "group.io.bitrise.app") {
         self.groupName = groupName
     }
 
